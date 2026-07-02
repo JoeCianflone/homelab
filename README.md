@@ -17,7 +17,9 @@ A version-controlled homelab built with the same engineering discipline as a sof
 - VLANS.md
 - FIREWALL.md
 - HARDWARE.md
-- SERVICES.md
+- SERVICES.md — service index; full per-service docs (architecture, installation,
+  configuration, troubleshooting, backup-and-restore, updates, migration) live under
+  `docs/services/<service>/`
 
 ## Roadmap
 1. Design
