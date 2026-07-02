@@ -2,7 +2,7 @@
 
 > **Status:** ✅ Operational
 >
-> **Hostname:** DNS-01 *(planned)*
+> **Hostname:** `headlikeapihole.local`
 >
 > **Service Owner:** Infrastructure
 >

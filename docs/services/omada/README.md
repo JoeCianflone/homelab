@@ -8,6 +8,16 @@
 
 Not yet deployed — see `HARDWARE.md` (Planned section). Placeholder following the [Pi-hole doc template](../pihole/README.md).
 
+## Hostnames
+
+| Device | Hostname |
+| --- | --- |
+| Router (ER707-M2) | `routertonowhere.local` |
+| Switch (Omada 2.5Gb Switch) | `killswitchengage.local` |
+| Access Point (EAP720) | `accessradiogaga.local` |
+
+See `docs/adr/0004-device-naming.md` for the naming convention.
+
 ## Documents
 
 | Doc | Purpose |

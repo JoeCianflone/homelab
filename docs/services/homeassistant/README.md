@@ -2,6 +2,8 @@
 
 > **Status:** 🚧 Planned
 >
+> **Hostname:** `takemehomeassistant.local`
+>
 > **Purpose:** Home automation platform.
 
 ## Overview

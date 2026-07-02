@@ -48,7 +48,7 @@ There was concern that Pi-hole's local DNS resolver would interfere with Laravel
 
 ## Future architecture
 
-Once the Omada router/switch and VLANs are in place, Pi-hole moves onto a dedicated Servers VLAN as `DNS-01`:
+Once the Omada router/switch and VLANs are in place, Pi-hole moves onto a dedicated Servers VLAN, keeping its hostname `headlikeapihole.local`:
 
 ```text
 Internet
@@ -57,7 +57,7 @@ Omada Router
     │
 Servers VLAN
     │
-DNS-01 (Pi-hole)
+headlikeapihole.local (Pi-hole)
 ```
 
 See [migration.md](migration.md) for the path to get there.

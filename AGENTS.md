@@ -8,4 +8,15 @@
 - Favor incremental changes.
 
 ## Naming
-RTR-01, SW-01, AP-01, DNS-01, HA-01, SRV-01, NAS-01
+Song-title puns, vaguely related to what the device does, as `.local` mDNS
+hostnames. See `docs/adr/0004-device-naming.md`.
+
+| Device | Hostname |
+| --- | --- |
+| Pi-hole (DNS) | `headlikeapihole.local` |
+| Home Assistant | `takemehomeassistant.local` |
+| Router | `routertonowhere.local` |
+| Switch | `killswitchengage.local` |
+| Access Point | `accessradiogaga.local` |
+| Server | `atyourserver.local` |
+| NAS | `illmatic.local` |

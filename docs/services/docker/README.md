@@ -2,11 +2,19 @@
 
 > **Status:** 🚧 Planned
 >
+> **Hostname (server):** `atyourserver.local` *(see note below)*
+>
 > **Purpose:** Container host for self-hosted services.
 
 ## Overview
 
 Not yet deployed. Placeholder following the [Pi-hole doc template](../pihole/README.md).
+
+**Note:** `AGENTS.md`/`docs/adr/0004-device-naming.md` list a separate "Server"
+device (`atyourserver.local`) distinct from "NAS". There's no dedicated
+`docs/services/server/` doc set yet — the hostname is recorded here against the
+Docker host for now. If the server ends up being a distinct physical device from
+the Docker host, split this into its own `docs/services/server/` doc set.
 
 ## Documents
 

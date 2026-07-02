@@ -20,7 +20,7 @@ it drift back into a full guide.
 
 > **Status:** ✅ Operational
 >
-> **Hostname:** DNS-01 *(planned)*
+> **Hostname:** `headlikeapihole.local`
 >
 > **Service Owner:** Infrastructure
 >

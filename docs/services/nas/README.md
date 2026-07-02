@@ -2,6 +2,8 @@
 
 > **Status:** 🚧 Planned
 >
+> **Hostname:** `illmatic.local`
+>
 > **Purpose:** Network-attached storage.
 
 ## Overview
