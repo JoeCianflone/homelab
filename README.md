@@ -9,7 +9,7 @@ A version-controlled homelab built with the same engineering discipline as a sof
 - Living documentation
 
 ## Project Status
-**Phase 0 – Architecture & Planning**
+**Phase 1 – Procure network hardware** — see `ROADMAP.md`
 
 ## Documents
 - ARCHITECTURE.md
@@ -22,10 +22,5 @@ A version-controlled homelab built with the same engineering discipline as a sof
   `docs/services/<service>/`
 
 ## Roadmap
-1. Design
-2. Core Network
-3. Pi-hole
-4. Home Assistant
-5. Server
-6. NAS
-7. Automation
+See `ROADMAP.md` for the full phased plan (hardware procurement → physical
+cutover → IP addressing → VLAN rollout).
