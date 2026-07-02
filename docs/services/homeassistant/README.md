@@ -1,6 +1,6 @@
 # Home Assistant
 
-> **Status:** 🚧 Planned
+> **Status:** ✅ Operational
 >
 > **Hostname:** `takemehomeassistant.local`
 >
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Runs on a dedicated Raspberry Pi (see `HARDWARE.md`). Not yet installed — this is a placeholder following the [Pi-hole doc template](../pihole/README.md).
+Runs on Home Assistant OS on a dedicated Raspberry Pi (see `HARDWARE.md`). Installed and reachable at `http://takemehomeassistant.local:8123`; SSH via the Terminal & SSH add-on on port `22222`.
 
 ## Documents
 

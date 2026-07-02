@@ -8,7 +8,7 @@ troubleshooting, backup-and-restore, updates, migration) lives under
 it drift back into a full guide.
 
 - [docs/services/pihole/](docs/services/pihole/README.md) ✅ Operational
-- [docs/services/homeassistant/](docs/services/homeassistant/README.md) 🚧 Planned
+- [docs/services/homeassistant/](docs/services/homeassistant/README.md) ✅ Operational
 - [docs/services/omada/](docs/services/omada/README.md) 🚧 Planned
 - [docs/services/plex/](docs/services/plex/README.md) 🚧 Planned
 - [docs/services/docker/](docs/services/docker/README.md) 🚧 Planned
@@ -33,3 +33,21 @@ records, query logging).
 Full architecture, install steps, configuration, troubleshooting history,
 backup/restore, updates, and migration plan:
 👉 **[docs/services/pihole/](docs/services/pihole/README.md)**
+
+---
+
+# Home Assistant
+
+> **Status:** ✅ Operational
+>
+> **Hostname:** `takemehomeassistant.local`
+>
+> **Service Owner:** Infrastructure
+>
+> **Purpose:** Home automation platform.
+
+Runs on Home Assistant OS on a dedicated Raspberry Pi. Reachable at
+`http://takemehomeassistant.local:8123`; SSH via the Terminal & SSH add-on on
+port `22222`.
+
+Full install steps: 👉 **[docs/services/homeassistant/](docs/services/homeassistant/README.md)**
