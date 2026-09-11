@@ -52,7 +52,7 @@ Note the admin password shown at the end of install (or set one with `pihole -a 
 
 ## 5. Configure the router for DHCP + DNS handoff
 
-The Verizon router keeps handling DHCP. Point it at Pi-hole for DNS so every device on the network picks it up automatically — see [configuration.md](configuration.md#router-dhcp-handoff).
+At initial installation, the Verizon router handled DHCP and advertised Pi-hole for DNS. The network has since been migrated to the Omada-based setup; see [configuration.md](configuration.md) for the current state.
 
 ## 6. Create a static DHCP reservation
 

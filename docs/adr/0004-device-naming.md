@@ -22,3 +22,28 @@ what the device does, replacing the RTR-01/HA-01-style scheme above.
 Kept as an addendum rather than rewritten, per `AGENTS.md`'s "document every
 significant decision" principle — the original scheme is still visible in history
 above.
+
+## Superseded again — Dungeon Crawler Carl infrastructure names
+
+The song-title-pun scheme remains part of the project history, but network infrastructure now uses a Dungeon Crawler Carl naming theme.
+
+| Role | Current name |
+| --- | --- |
+| Router | Dungeon World |
+| Switch | Scolopendra |
+| Access point | Gate of the Feral Gods |
+| Controller | The Syndicate |
+| Media server | Sensation Entertainment |
+| NAS | Larracos |
+| Cameras | Orren |
+| VPN | Snicks |
+
+Current SSIDs:
+
+| Purpose | SSID |
+| --- | --- |
+| Main | `Desperado Club` |
+| Guest | `Vanquisher` |
+| IoT | `Apothecary` |
+
+Pi-hole (`headlikeapihole.local`) and Home Assistant (`takemehomeassistant.local`) retain their existing hostnames for now; this ADR does not imply an automatic hostname migration.

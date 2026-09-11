@@ -1,73 +1,34 @@
-# Pi-hole — Configuration
+# Pi-hole Configuration
 
-## Router DHCP handoff
+## Current network handoff
 
-The Verizon router continues to hand out DHCP leases. It advertises the Pi-hole's IP as the network's DNS server, so every device gets Pi-hole automatically via DHCP — no per-device configuration needed.
+Pi-hole is the network DNS server at `192.168.0.108`. DHCP remains on the router/network infrastructure, which advertises Pi-hole as LAN DNS so clients receive it automatically.
 
-Router: DHCP only.
-Pi-hole: DNS only.
+This keeps responsibilities separated:
 
-Why this split: see [architecture.md](architecture.md#decision-dhcp-stays-on-the-router-for-now).
+- Router/network: DHCP, routing, firewalling, VLANs
+- Pi-hole: DNS filtering, local DNS, query visibility
 
-## DHCP reservation
+## Client verification
 
-A static DHCP reservation was created on the router for the Pi's MAC address, so its IP never changes. Infrastructure devices (DNS, Home Assistant, NAS, servers) should always get reserved addresses — a moving DNS server IP would break every client's DHCP-assigned DNS setting until leases renew.
+From a client, verify DNS resolution and confirm the resolver is Pi-hole. Useful commands include:
 
-## Upstream DNS
+```sh
+dig google.com
+scutil --dns
+```
 
-Selected during the Pi-hole installer's interactive prompts (choice of upstream provider, e.g. Cloudflare/Google/Quad9/custom). Recorded as "configured during install" — if you don't remember which was picked, check `/etc/pihole/pihole-FTL.conf` or Settings → DNS in the Pi-hole admin UI on the live system before it's rebuilt.
+The exact client output varies, but the effective LAN DNS should ultimately route through `192.168.0.108`.
 
 ## Local DNS
 
-Enabled. Lets you assign hostnames to devices on the local network (e.g. `homeassistant.home`) that resolve only within the LAN, resolved by Pi-hole rather than sent upstream.
+Local names can be maintained in Pi-hole where appropriate. `.local` hostnames such as `headlikeapihole.local` and `takemehomeassistant.local` also rely on mDNS behavior and should not be assumed to be ordinary unicast DNS records.
 
-## Why the resolver shows 127.0.0.1
-
-On the Pi itself, the system resolver points at `127.0.0.1`. This is expected — Pi-hole runs its own resolver (FTL) locally on the Pi and answers queries from there rather than forwarding every query externally first.
-
-## Laravel Herd interaction
-
-Herd's local DNS resolver was left untouched. It only needs to resolve Herd's own local development domains and does not need to route through Pi-hole. Changing it would have broken local development for no benefit. Full investigation: [troubleshooting.md](troubleshooting.md#laravel-herd-dns-conflict).
-
-## Verification
-
-DNS queries:
-
-```bash
-dig google.com
-```
-
-Verify the local resolver directly:
-
-```bash
-dig @127.0.0.1 google.com
-```
-
-HTTP connectivity (confirms DNS resolution end-to-end, not just the `dig` protocol path):
-
-```bash
-curl https://www.google.com
-```
-
-**Test in this order** — `dig`, then `curl`, then browser. See [troubleshooting.md](troubleshooting.md#lesson-test-dns-separately-from-the-browser) for why browser-only testing is misleading.
-
-## Current configuration snapshot
+## Current summary
 
 | Setting | Value |
 | --- | --- |
-| DHCP | Verizon Router |
-| DNS | Pi-hole |
-| Local DNS | Enabled |
-| Upstream DNS | Configured during install (see above) |
-| DHCP Reservation | Yes |
-
-## Monitoring
-
-Review regularly in the Pi-hole admin UI / via CLI:
-
-- Query log
-- Block statistics
-- Upstream health
-- Disk usage
-- CPU usage
-- Temperature
+| Pi-hole IPv4 | `192.168.0.108` |
+| DHCP provider | Current router/network |
+| Pi-hole DHCP | Disabled |
+| Role | Primary LAN DNS |

@@ -1,39 +1,52 @@
-# Omada Controller
+# Omada Network
 
-> **Status:** 🚧 Planned
+> **Status:** ✅ Core network operational
 >
-> **Purpose:** Router/switch/AP management (ER707-M2, Omada 2.5Gb Switch, EAP720).
+> **Purpose:** Router, switch, access-point, SSID, and future VLAN management.
 
 ## Overview
 
-Not yet deployed — see `HARDWARE.md` (Planned section). Placeholder following the [Pi-hole doc template](../pihole/README.md).
+The Omada-based network has replaced the previous Verizon-router-centric setup. The router and access point are operational and the new Wi-Fi networks are in service.
 
-## Hostnames
+A dedicated OC200 hardware controller is being considered for future centralized local management. Omada Cloud Essentials was evaluated and rejected because local/privacy-preserving management is preferred.
 
-| Device | Hostname |
+## Current names
+
+| Role | Name |
 | --- | --- |
-| Router (ER707-M2) | `routertonowhere.local` |
-| Switch (Omada 2.5Gb Switch) | `killswitchengage.local` |
-| Access Point (EAP720) | `accessradiogaga.local` |
+| Router | Dungeon World |
+| Switch | Scolopendra |
+| Access point | Gate of the Feral Gods |
+| Controller | The Syndicate |
 
-See `docs/adr/0004-device-naming.md` for the naming convention.
+## SSIDs
 
-## Documents
-
-| Doc | Purpose |
+| SSID | Purpose |
 | --- | --- |
-| architecture.md | Why Omada, how it replaces/augments the Verizon router |
-| installation.md | Full from-scratch install |
-| configuration.md | VLANs, SSIDs, firewall rules |
-| troubleshooting.md | Issues hit and fixes |
-| backup-and-restore.md | Backup strategy and disaster recovery |
-| updates.md | Update procedure |
+| `Desperado Club` | Main/trusted |
+| `Vanquisher` | Guest |
+| `Apothecary` | IoT |
 
-Fill these in as the service is actually built.
+## Current service addressing
+
+The current flat LAN is `192.168.0.0/24` while final VLAN segmentation is still in progress.
+
+- Home Assistant: `192.168.0.107`
+- Pi-hole / LAN DNS: `192.168.0.108`
+
+## Next work
+
+- Continue recommissioning IoT/Home Assistant devices from the old network.
+- Finalize VLAN addressing and firewall policy.
+- Configure mDNS/multicast behavior required by HomeKit/Matter/Thread across VLANs.
+- Add an OC200 if centralized local controller management is desired.
 
 ## Related Documents
 
-- `HARDWARE.md`
+- `NETWORK.md`
 - `VLANS.md`
+- `FIREWALL.md`
+- `ROADMAP.md`
 - `docs/adr/0001-choose-omada.md`
 - `docs/adr/0003-vlan-strategy.md`
+- `docs/adr/0004-device-naming.md`

@@ -1,37 +1,26 @@
-# Pi-hole — Migration
+# Pi-hole Migration
+
+> **Status:** ✅ Migrated to the current Omada-based LAN; future Servers VLAN move remains open.
 
 ## Current state
 
-Pi-hole runs directly on the flat home network, behind the Verizon router, providing DNS only. See [architecture.md](architecture.md#current-architecture).
+- Pi-hole address: `192.168.0.108`
+- Hostname: `headlikeapihole.local`
+- LAN DNS advertisement has been updated to point clients at Pi-hole.
+- DNS resolution has been verified after the network cutover.
 
-## Target state
+## Completed
 
-Once the Omada router/switch (ER707-M2, Omada 2.5Gb Switch) is deployed and VLANs are configured (`docs/adr/0003-vlan-strategy.md`), Pi-hole moves to a dedicated Servers VLAN, keeping its hostname `headlikeapihole.local` (`docs/adr/0004-device-naming.md`, `docs/adr/0005-ip-addressing.md`):
+- [x] Move Pi-hole onto the current network
+- [x] Identify its current address (`192.168.0.108`)
+- [x] Configure LAN DNS to use Pi-hole
+- [x] Verify name resolution from clients
 
-```text
-Internet
-    │
-Omada Router
-    │
-Servers VLAN
-    │
-headlikeapihole.local (Pi-hole)
-```
+## Future Servers VLAN migration
 
-## Migration checklist (future work)
-
-- [ ] Deploy Omada router and switch
-- [ ] Configure VLANs, including a Servers VLAN
-- [ ] Assign Pi-hole a static IP within the Servers VLAN per `docs/adr/0005-ip-addressing.md`
-- [ ] Confirm `headlikeapihole.local` still resolves after the move (mDNS hostname, no rename needed — see `docs/adr/0004-device-naming.md`)
-- [ ] Re-point DHCP (now likely on Omada) to the new Pi-hole address
-- [ ] Re-verify with `dig`, `curl`, and browser from a client on each VLAN that should reach DNS
-- [ ] Update this doc set and `SERVICES.md` to reflect the new architecture as current
-
-## Other planned improvements (not VLAN-related)
-
-- Automatic backups (see [backup-and-restore.md](backup-and-restore.md))
-- Integrate with Home Assistant
-- Monitoring (query log, block stats, upstream health, disk/CPU/temp — see [configuration.md](configuration.md#monitoring))
-- Gravity Sync, if a secondary Pi-hole is added for redundancy
-- High availability (further out)
+- [ ] Finalize Servers VLAN/subnet design
+- [ ] Reserve/assign Pi-hole's final address
+- [ ] Update DHCP/LAN DNS advertisement
+- [ ] Add firewall rules allowing required clients/VLANs to reach DNS on TCP/UDP 53
+- [ ] Re-verify DNS from each permitted VLAN
+- [ ] Update service docs with the new address

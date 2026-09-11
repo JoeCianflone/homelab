@@ -8,15 +8,19 @@
 - Favor incremental changes.
 
 ## Naming
-Song-title puns, vaguely related to what the device does, as `.local` mDNS
-hostnames. See `docs/adr/0004-device-naming.md`.
+Infrastructure names currently use a Dungeon Crawler Carl theme. Preserve historical naming decisions in `docs/adr/0004-device-naming.md`; do not silently rewrite history.
 
-| Device | Hostname |
+| Role | Current name |
 | --- | --- |
-| Pi-hole (DNS) | `headlikeapihole.local` |
-| Home Assistant | `takemehomeassistant.local` |
-| Router | `routertonowhere.local` |
-| Switch | `killswitchengage.local` |
-| Access Point | `accessradiogaga.local` |
-| Server | `atyourserver.local` |
-| NAS | `illmatic.local` |
+| Router | Dungeon World |
+| Switch | Scolopendra |
+| Access Point | Gate of the Feral Gods |
+| Controller | The Syndicate |
+| Media Server | Sensation Entertainment |
+| NAS | Larracos |
+| Cameras | Orren |
+| VPN | Snicks |
+
+SSIDs: `Desperado Club` (main), `Vanquisher` (guest), `Apothecary` (IoT).
+
+Pi-hole and Home Assistant currently retain `headlikeapihole.local` and `takemehomeassistant.local`.

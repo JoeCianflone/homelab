@@ -1,16 +1,13 @@
 # Services
 
-Pi-hole, Home Assistant, Omada Controller, Plex, Docker, NAS.
+Pi-hole, Home Assistant, Omada networking, Plex, Docker, and NAS.
 
-Full documentation for each service (architecture, installation, configuration,
-troubleshooting, backup-and-restore, updates, migration) lives under
-`docs/services/<service>/`. This file stays a short current-state index; do not let
-it drift back into a full guide.
+Full documentation for each service lives under `docs/services/<service>/`. This file stays a short current-state index.
 
 - [docs/services/pihole/](docs/services/pihole/README.md) ✅ Operational
 - [docs/services/homeassistant/](docs/services/homeassistant/README.md) ✅ Operational
-- [docs/services/omada/](docs/services/omada/README.md) 🚧 Planned
-- [docs/services/plex/](docs/services/plex/README.md) 🚧 Planned
+- [docs/services/omada/](docs/services/omada/README.md) ✅ Core network operational; dedicated hardware controller deferred
+- [docs/services/plex/](docs/services/plex/README.md) 🚧 Planned / migration work
 - [docs/services/docker/](docs/services/docker/README.md) 🚧 Planned
 - [docs/services/nas/](docs/services/nas/README.md) 🚧 Planned
 
@@ -22,17 +19,13 @@ it drift back into a full guide.
 >
 > **Hostname:** `headlikeapihole.local`
 >
-> **Service Owner:** Infrastructure
+> **IPv4:** `192.168.0.108`
 >
 > **Purpose:** Network-wide DNS filtering and local DNS resolution.
 
-Pi-hole is the primary DNS server for the home network. DHCP stays on the Verizon
-router; Pi-hole handles DNS only (network-wide ad/tracker blocking, local DNS
-records, query logging).
+Pi-hole is the primary DNS server for the home network. The current router advertises Pi-hole (`192.168.0.108`) as LAN DNS. Query resolution through Pi-hole has been verified after the network cutover.
 
-Full architecture, install steps, configuration, troubleshooting history,
-backup/restore, updates, and migration plan:
-👉 **[docs/services/pihole/](docs/services/pihole/README.md)**
+Full documentation: 👉 **[docs/services/pihole/](docs/services/pihole/README.md)**
 
 ---
 
@@ -42,12 +35,12 @@ backup/restore, updates, and migration plan:
 >
 > **Hostname:** `takemehomeassistant.local`
 >
-> **Service Owner:** Infrastructure
+> **IPv4:** `192.168.0.107`
 >
 > **Purpose:** Home automation platform.
 
-Runs on Home Assistant OS on a dedicated Raspberry Pi. Reachable at
-`http://takemehomeassistant.local:8123`; SSH via the Terminal & SSH add-on on
-port `22222`.
+Runs on Home Assistant OS on a dedicated Raspberry Pi. Reachable at `http://takemehomeassistant.local:8123` or `http://192.168.0.107:8123`.
 
-Full install steps: 👉 **[docs/services/homeassistant/](docs/services/homeassistant/README.md)**
+The host is fully moved to the current network. Individual smart devices may still require cleanup/recommissioning from the old network. HTTPS with a custom domain is deferred.
+
+Full documentation: 👉 **[docs/services/homeassistant/](docs/services/homeassistant/README.md)**

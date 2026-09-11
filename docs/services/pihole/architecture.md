@@ -1,69 +1,30 @@
-# Pi-hole — Architecture
-
-## Why Pi-hole exists
-
-Goals for a dedicated DNS appliance:
-
-- Stable, network-wide DNS
-- Network-wide ad and tracker blocking
-- Local hostname resolution
-- A foundation for Home Assistant and future services
-- Easy migration to the future VLAN architecture
-
-A Raspberry Pi running Pi-hole was chosen over relying on the Verizon router's built-in DNS because the router offers no filtering, no query visibility, and no local DNS records.
+# Pi-hole Architecture
 
 ## Current architecture
 
-```text
-                Internet
-                    │
-            Upstream DNS
-                    │
-             Verizon Router
-          (DHCP Only)
-                    │
-            DNS -> Pi-hole
-                    │
-             Raspberry Pi
-```
-
-The Verizon router (CR1000B) still hands out DHCP leases, but advertises the Pi-hole's IP as the DNS server, so every device on the network resolves through Pi-hole automatically without per-device configuration.
-
-## Decision: DHCP stays on the router (for now)
-
-**Considered:** moving DHCP to Pi-hole as well, so it fully owns network services.
-
-**Decided against, for now.** DHCP and DNS are separate concerns, and splitting them keeps the setup simple:
-
-- Router → DHCP
-- Pi-hole → DNS
-
-This keeps blast radius small (if Pi-hole goes down, devices keep their leases and can be pointed elsewhere) and doesn't block migrating to Omada later. Revisit once the Omada router is in place — see [migration.md](migration.md).
-
-## Decision: leave Laravel Herd's resolver alone
-
-There was concern that Pi-hole's local DNS resolver would interfere with Laravel Herd (used for local development on this machine). Investigated with `dig`/`curl` — see [troubleshooting.md](troubleshooting.md#laravel-herd-dns-conflict). Herd's resolver was confirmed to be independent of the network DNS path.
-
-**Final decision:** leave Herd exactly as installed. Changing Herd's resolver would break local development for no network benefit, since Herd only needs to resolve its own local dev domains, not the wider network.
-
-## Future architecture
-
-Once the Omada router/switch and VLANs are in place, Pi-hole moves onto a dedicated Servers VLAN, keeping its hostname `headlikeapihole.local`:
+Pi-hole runs on a Raspberry Pi at `192.168.0.108` and provides DNS for the current Omada-based LAN.
 
 ```text
 Internet
-    │
-Omada Router
-    │
-Servers VLAN
-    │
-headlikeapihole.local (Pi-hole)
+   |
+Omada-based router/network
+   |-- DHCP / routing / firewall
+   |-- advertises DNS: 192.168.0.108
+   |
+Pi-hole (192.168.0.108)
+   |-- DNS filtering
+   |-- local DNS
+   |-- query visibility
+   |
+LAN clients
 ```
 
-See [migration.md](migration.md) for the path to get there.
+Keeping DHCP on the network infrastructure and DNS on Pi-hole avoids making Pi-hole responsible for address assignment while preserving network-wide filtering and visibility.
 
-## Related decisions
+## Historical architecture
 
-- `docs/adr/0003-vlan-strategy.md`
-- `docs/adr/0004-device-naming.md`
-- `docs/adr/0005-ip-addressing.md`
+Before the Omada cutover, the Verizon CR1000B provided DHCP and advertised Pi-hole as DNS. That arrangement is no longer current but is retained here as migration history.
+
+## Future architecture
+
+When VLAN segmentation is finalized, Pi-hole may move to a dedicated Servers VLAN. If its address changes, update DHCP/DNS advertisement, firewall rules, monitoring, and the documentation together.

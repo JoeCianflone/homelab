@@ -1,36 +1,42 @@
 # Roadmap
 
 ## Phase 0 — Design & Core Services ✅ Done
-- Architecture/planning docs, ADRs 0001–0005
-- Pi-hole operational (`headlikeapihole.local`)
-- Home Assistant operational (`takemehomeassistant.local`)
+- Architecture/planning docs and initial ADRs
+- Pi-hole operational (`192.168.0.108`, `headlikeapihole.local`)
+- Home Assistant operational (`192.168.0.107`, `takemehomeassistant.local`)
 
-## Phase 1 — Procure network hardware
-- Order ER707-M2, Omada 2.5Gb switch, EAP720
-- Update `HARDWARE.md` Planned → Current as items arrive
+## Phase 1 — Omada network cutover ✅ Done
+- New Omada router and access point installed
+- Primary Wi-Fi operational
+- Pi-hole moved to the new LAN and configured as LAN DNS
+- Home Assistant moved to the new LAN
+- Current service addresses verified
 
-## Phase 2 — Physical cutover
-- Remove Verizon CR1000B entirely (not bridge mode — fully replaced)
-- ER707-M2 connects directly to the ONT as WAN
-- Cable switch and AP; adopt into Omada Controller
+## Phase 2 — Wi-Fi/service organization 🚧 In progress
+- `Desperado Club` — main/trusted SSID
+- `Vanquisher` — guest SSID
+- `Apothecary` — IoT SSID
+- Recommission smart-home devices that still retain configuration from the old network
+- Rebuild stale Home Assistant integrations only where necessary
 
-## Phase 3 — Core network + IP addressing
-- Fill in `docs/adr/0005-ip-addressing.md` with real subnets for Main (10) and Servers (20)
-- Move DHCP from the (now-removed) Verizon router to the ER707-M2
-- Update `docs/services/pihole/migration.md` checklist as this happens
+## Phase 3 — Controller and management
+- Continue managing current Omada devices with the present setup
+- Purchase an OC200 hardware controller if/when centralized local management is desired
+- Cloud Essentials was evaluated and rejected because local/privacy-preserving management is preferred
 
-## Phase 4 — Migrate Pi-hole + Home Assistant onto Servers VLAN
-- Static IPs per the new addressing scheme
-- Confirm DHCP still hands out Pi-hole as DNS
-- Re-verify with `dig`/`curl`/browser per `docs/services/pihole/troubleshooting.md`
+## Phase 4 — VLAN segmentation
+- Finalize Main / Servers / IoT VLAN addressing
+- Move core services to final static/reserved addresses if the subnet design changes
+- Configure explicit mDNS/multicast handling where HomeKit/Matter/Thread discovery requires cross-VLAN access
+- Apply firewall policy between trusted, IoT, guest, camera, server, and other future networks
 
-## Phase 5 — Stand up IoT VLAN (30) alongside Main/Servers
-- Onboard existing Matter bulbs
-- Onboard HomePod minis when purchased
-- Configure explicit mDNS/multicast reflection between Main ↔ IoT for HomeKit/Matter/Thread discovery — an explicit exception to `FIREWALL.md`'s default-deny, not left implicit
-
-## Phase 6 — Deferred VLANs (no current devices)
-- Cameras (40), Guest (50), Quarantine (60), VPN (70) — revisit when an actual device or need drives each one
+## Phase 5 — Home Assistant device rebuild
+- Remove stale old-network integration/config entries as required
+- Reset/recommission Matter and other devices that cannot migrate network credentials in place
+- Use Home Assistant helpers (for example Light groups) where multiple devices should expose one logical control
 
 ## Later
-- Server, NAS, Docker, Plex — see `SERVICES.md` for current status of each
+- Custom-domain HTTPS for internal services using publicly trusted certificates and no client-installed private CA
+- Server, NAS, Docker, Plex
+- Cameras and local-only camera integration
+- VPN/torrent host
