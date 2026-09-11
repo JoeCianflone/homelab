@@ -1,0 +1,15 @@
+{
+  "name": "homelab-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "docs:dev": "vitepress .",
+    "docs:build": "vitepress build .",
+    "docs:preview": "vitepress preview ."
+  },
+  "devDependencies": {
+    "vitepress": "1.6.4"
+  },
+  "packageManager": "pnpm@11.0.9"
+}

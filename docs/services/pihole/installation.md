@@ -46,7 +46,7 @@ During the interactive installer:
 - Accept the default web interface
 - Install `lighttpd`
 - Install FTL
-- Select an upstream DNS provider (see [configuration.md](configuration.md#upstream-dns) for what/why)
+- Select an upstream DNS provider (see [configuration.md](configuration.md) for what/why)
 
 Note the admin password shown at the end of install (or set one with `pihole -a -p`).
 
@@ -56,7 +56,7 @@ At initial installation, the Verizon router handled DHCP and advertised Pi-hole 
 
 ## 6. Create a static DHCP reservation
 
-Reserve the Pi's IP in the router's DHCP settings so the DNS server's address never changes. See [configuration.md](configuration.md#dhcp-reservation).
+Reserve the Pi's IP in the router's DHCP settings so the DNS server's address never changes. See [configuration.md](configuration.md).
 
 ## 7. Verify
 
@@ -66,7 +66,7 @@ dig @127.0.0.1 google.com
 curl https://www.google.com
 ```
 
-Full verification procedure and expected output: [configuration.md](configuration.md#verification).
+Full verification procedure and expected output: [configuration.md](configuration.md#client-verification).
 
 ## Post-install checklist
 

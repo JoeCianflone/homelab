@@ -44,7 +44,7 @@ ip addr
 
 **Observed:** on the Pi, the resolver is `127.0.0.1`.
 
-**Not a bug.** Pi-hole runs its own resolver (FTL) locally on the Pi and answers from there. Documented in [configuration.md](configuration.md#why-the-resolver-shows-127001).
+**Not a bug.** Pi-hole runs its own resolver (FTL) locally on the Pi and answers from there. Documented in [configuration.md](configuration.md).
 
 ## Laravel Herd DNS conflict
 
@@ -68,7 +68,7 @@ Always verify in this order:
 
 ## Lesson: DHCP and DNS are separate concerns
 
-Keeping them split (router = DHCP, Pi-hole = DNS) made debugging easier — a DNS issue could be isolated without wondering whether DHCP leases were also affected. See [architecture.md](architecture.md#decision-dhcp-stays-on-the-router-for-now).
+Keeping them split (router = DHCP, Pi-hole = DNS) made debugging easier — a DNS issue could be isolated without wondering whether DHCP leases were also affected. See [architecture.md](architecture.md).
 
 ## Lesson: static reservations prevent a whole class of outages
 

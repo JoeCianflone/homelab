@@ -315,7 +315,7 @@ export default defineConfig({
 
 Update `.gitignore` to contain:
 
-```gitignore
+```text
 .DS_Store
 node_modules/
 .vitepress/cache/

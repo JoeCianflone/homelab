@@ -32,3 +32,27 @@ Current core services:
 ## Roadmap
 
 See `ROADMAP.md` for the current migration, controller, VLAN, Home Assistant, HTTPS, and future-service work.
+
+## Documentation Site
+
+The Markdown in this repository is available as a local VitePress site.
+
+Install dependencies and start the development server:
+
+```sh
+pnpm install
+pnpm docs:dev
+```
+
+Build and preview the production site:
+
+```sh
+pnpm docs:build
+pnpm docs:preview
+```
+
+Run the documentation navigation test:
+
+```sh
+pnpm test
+```
